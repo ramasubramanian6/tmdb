@@ -43,19 +43,35 @@ function HomePage() {
   const [watch,setwatch]=useState([]);
 
 
-  const addWatch=(movie)=>{
-    setwatch([...watch],movie);
+  const addWatch=(index)=>{
+    const preArrat=[...watch];
+    preArrat.push(movie[index].original_title)
+    setwatch(preArrat);
+  }
+
+  const RemoveWatch=(index)=>{
+    const preliked=[...watch];
+   const filtermovie= preliked.filter((e)=>{
+      return (e !== movie[index].original_title);
+    })
+    setwatch(filtermovie);
   }
 
 
+  const ismovielike = (index) => {
+    const preliked = [...watch];
+    return preliked.some((e) => {
+        return e === movie[index].original_title;
+    });
+};
 
-console.log(watch);
+
 
 
   return (
     <div> 
       <Banner url={movie[0]}/>
-      <Top10 addWatch={addWatch}  movie={movie}/>
+      <Top10 addWatch={addWatch} RemoveWatch={RemoveWatch} ismovielike={ismovielike} movie={movie}/>
     </div>
   )
 }
