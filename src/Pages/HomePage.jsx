@@ -5,10 +5,31 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 
 
+
 function HomePage() {
 
+  //Toggle
+
+const [toggle,settoggle]=useState("week");
+
+const handletoggle=()=>{
+  if(toggle=="week")
+  {
+    settoggle("day");
+    
+
+  }
+  else{
+    settoggle("week");
+    
+
+  }
+}
+
+
+
   
-  const api="https://api.themoviedb.org/3/trending/movie/week?api_key=7c7118e2479a799a8b8d95c7ee185dec&language=en-US&page=1";
+  const api=`https://api.themoviedb.org/3/trending/movie/${toggle}?api_key=7c7118e2479a799a8b8d95c7ee185dec&language=en-US&page=1`;
   const [movie,setmovie]=useState([]);
   const data_local=localStorage.getItem(movie);
   
@@ -68,12 +89,14 @@ function HomePage() {
 
 
 
+
   return (
     <div> 
       <Banner url={movie[0]}/>
-      <Top10 addWatch={addWatch} RemoveWatch={RemoveWatch} ismovielike={ismovielike} movie={movie}/>
+    
+      <Top10 addWatch={addWatch} RemoveWatch={RemoveWatch} ismovielike={ismovielike} movie={movie} handletoggle={handletoggle}/>
     </div>
   )
 }
 
-export default HomePage
+export default HomePage;

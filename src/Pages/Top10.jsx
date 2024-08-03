@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Like from '../assets/heart.png';
 import Liked from '../assets/heart (1).png';
+import { FaToggleOff } from "react-icons/fa";
+import { FaToggleOn } from "react-icons/fa";
 
 
 
-function Top10({movie,addWatch,RemoveWatch,ismovielike }) {
+function Top10({movie,addWatch,RemoveWatch,ismovielike,handletoggle }) {
     const [like,setlike]=useState([]);
     
     function likehandler(index){
@@ -22,12 +24,28 @@ function Top10({movie,addWatch,RemoveWatch,ismovielike }) {
        
     }
 
+    const [flag,setflag]=useState(false);
+
+   const handletogglebutton=()=>
+   {
+        handletoggle();
+        setflag(!flag);
+
+   }
    
 
 
   return (
     <div>
-            <div className='flex justify-center font-bold pt-3 text-5xl my-5 text-yellow-600 underline '>Top 20 Trending Movies of the Week</div>
+            
+            <div className='flex justify-center font-bold pt-3 text-6xl my-5 text-yellow-600 underline '>Top 20 Trending Movies</div>
+            <div className='flex  justify-end pr-12 top-10 '>
+                <button className='flex  text-white text-3xl' onClick={handletogglebutton}  >
+                <span className='pr-2 font-title text-yellow-500'>Week</span> {flag ? <FaToggleOn className=' size-[2.5rem] text-red-600'></FaToggleOn>: <FaToggleOff className=' size-[2.5rem] text-fuchsia-800'></FaToggleOff>}<span className='pl-2 font-title text-yellow-500 '>Day</span>
+                    
+                </button>
+            </div>
+           
         <div className='flex flex-wrap justify-center pt-3'>
             {
                 movie.map((e, index) => {
@@ -40,8 +58,6 @@ function Top10({movie,addWatch,RemoveWatch,ismovielike }) {
                         <div onClick={()=>likehandler(index)} className='bg-white bg-opacity-55 rounded-sm size-9 font-semibold hover:scale-110 absolute bottom-1 right-2 '>
                         {
                             ismovielike(index)? <img src={Liked}></img>:<img src={Like}></img>
-
-                            
                         }</div>
                                     
                         </div>
