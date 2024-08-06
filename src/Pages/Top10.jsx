@@ -53,9 +53,9 @@ function Top10({movie,addWatch,RemoveWatch,ismovielike,handletoggle }) {
                     <>
                         <div key={e.id} className='m-4 hover:scale-105 relative w-[calc(50%_-_2rem)] md:w-[calc(24%_-_2rem)]'>
                         <img src={`https://image.tmdb.org/t/p/original/${e.poster_path}`} alt="Movie Banner" className=' w-full object-cover rounded-2xl  ' />
-                        <div className='h-11 text-[1rem]  md:text-[1.1rem] md:font-medium w-full  bg-slate-600 bg-opacity-40 absolute flex  justify-center  items-center font-name top-[1rem] md:top-[1rem]  text-white'>{e.original_title}</div>
+                        <div className='h-11 text-[0.8rem] font-extralight  md:text-[1rem] md:font-medium w-full  bg-slate-600 bg-opacity-40 absolute flex  justify-center  items-center  top-[1rem] md:top-[1rem]  text-white'>{e.original_title}</div>
                                                 
-                        <div onClick={()=>likehandler(index)} className='bg-white bg-opacity-55 rounded-sm size-9 font-semibold hover:scale-110 absolute bottom-1 right-2 '>
+                        <div onClick={()=>likehandler(index)} className='bg-white bg-opacity-55 rounded-sm size-7 font-semibold hover:scale-110 absolute bottom-1 right-2 '>
                         {
                             ismovielike(index)? <img src={Liked}></img>:<img src={Like}></img>
                         }</div>
